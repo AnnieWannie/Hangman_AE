@@ -1,0 +1,88 @@
+import random
+
+
+LEXICON_FILE = "Lexicon.txt"    # File to read word list from
+INITIAL_GUESSES = 8             # Initial number of guesses player starts with
+
+
+def play_game(secret_word, INITIAL_GUESSES):
+    print("")
+    true_answer= secret_word
+    length_of_answer = "-" * len(true_answer)
+    print ("The word looks like:", length_of_answer)
+    print ("")
+    guessed_letters = []
+    true_answer_list = []
+    true_answer_list_placeholder = list(true_answer)
+    for i in true_answer_list_placeholder:
+        if i not in true_answer_list:
+            true_answer_list.append(i)
+    while INITIAL_GUESSES > 0:
+        guess = input("Please type a single letter here, then press the enter key: ").upper()
+        print("")
+        if len(guess) == 1 and guess.isalpha():
+            if guess in guessed_letters:
+                print("You already guessed that letter. \n")
+            elif guess in true_answer_list:
+                print("Nice job!", guess, "is in the word! \n")
+                guessed_letters.append(guess)
+                print ("The word now looks like: " )
+            elif guess not in true_answer:
+                print ("That letter is not in the word \n")
+                INITIAL_GUESSES -= 1
+                print ("You have ", INITIAL_GUESSES, " guesses remaining.")
+            if sorted(guessed_letters) == sorted(true_answer_list):
+                break
+        else:
+            print ("Sorry that is not a valid guess!")
+    if INITIAL_GUESSES == 0:
+        print ("Unfortunately you were unable to guess the word. It was", true_answer)
+    else:
+        print ("Congratulations! You were able to correctly guess the word!", true_answer)
+
+
+def get_word():
+    """
+    with open("Lexicon.txt") as lexicon:
+        word_selection = lexicon.read()
+        word_selection = word_selection.split()
+        word_selected = (random.choice(word_selection))
+    return word_selected
+    """
+    random_index = random.randint(1,4)
+    if random_index == 1:
+        return "GOOD"
+    if random_index == 2:
+        return "PYTHON"
+    if random_index == 3:
+        return "COMPUTER"
+    if random_index == 4:
+        return "HAPPY"
+
+
+
+def play_again():
+    play_again = input("Would you like to play again? (Y/N) \n").upper()
+    while play_again != "N" :
+        if play_again == "Y":
+            secret_word = get_word()
+            play_game(secret_word, INITIAL_GUESSES)
+            play_again = input("Would you like to play again? (Y/N) \n").upper()
+        elif play_again == "N":
+            break
+        elif play_again != "Y" or "N":
+            print ("That is an invalid input. Please respond with Y or N. \n")
+            play_again = input("Would you like to play again? (Y/N) \n").upper()
+    print ("Thanks for playing! :)")
+
+
+def main():
+    print("Welcome to 'WordGuess with Python' as the user you will have", INITIAL_GUESSES, "chances to guess the mystery word! \n An incorrect guess will consume one of your guesses, but a correct guess will not. \n Good luck and have fun!")
+    secret_word = get_word()
+    play_game(secret_word, INITIAL_GUESSES)
+    play_again()
+    
+# This provided line is required at the end of a Python file
+# to call the main() function.
+if __name__ == "__main__":
+    main()
