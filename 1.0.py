@@ -8,8 +8,8 @@ INITIAL_GUESSES = 8             # Initial number of guesses player starts with
 def play_game(secret_word, INITIAL_GUESSES):
     print("")
     true_answer= secret_word #The chosen word stored as a variable
-    length_of_answer = "-" * len(true_answer)
-    print ("The word looks like:", length_of_answer)
+    length_of_answer = ["-"] * len(true_answer)
+    print ("The word looks like:", "".join(length_of_answer))
     print ("")
     guessed_letters = [] #A list that will append the users correct inputs as the game goes on
     true_answer_list = [] #A variable that will store the list version of the chosen word for the game
@@ -40,7 +40,7 @@ def play_game(secret_word, INITIAL_GUESSES):
                                 length_of_answer = length_of_answer[:i] + guess + length_of_answer[i+1:]#2nd way end
                 print(length_of_answer)
                 """
-                for i, letter in enumerate(true_answer): #3rd way start
+                for i, letter in enumerate(true_answer): #3rd way start and also makes the most sense/easiest route
                     if guess == letter:
                         length_of_answer[i] = guess
                 print ("".join(length_of_answer)) #3rd way end
