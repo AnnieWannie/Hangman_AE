@@ -48,7 +48,7 @@ def play_game(secret_word, INITIAL_GUESSES):
                 print ("That letter is not in the word \n")
                 INITIAL_GUESSES -= 1
                 print ("You have ", INITIAL_GUESSES, " guesses remaining.")
-            if sorted(guessed_letters) == sorted(true_answer_list):
+            if sorted(guessed_letters) == sorted(true_answer_list): #if statement to end the game when the word is solved
                 break
         else:
             print ("Sorry that is not a valid guess!")
