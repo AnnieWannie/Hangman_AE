@@ -28,16 +28,22 @@ def play_game(secret_word, INITIAL_GUESSES):
                 guessed_letters.append(guess)
                 print ("The word now looks like: " )
                 if guess in true_answer:
-                    #index = [i for i, l in enumerate(true_answer) if l == guess]
-                    #for i in index:
-                        #length_of_answer = length_of_answer[:i] + guess + length_of_answer[i+1:]
-                    index = []
+                    """
+                    index = [i for i, l in enumerate(true_answer) if l == guess] #1st way start
+                    for i in index:
+                        #length_of_answer = length_of_answer[:i] + guess + length_of_answer[i+1:] #1st way end  
+                    index = [] #2nd way start
                     for i, letter in enumerate(true_answer):
                         if letter == guess:
-                            index.append(i)
+                            index.append(i)             
                             for i in index:
-                                length_of_answer = length_of_answer[:i] + guess + length_of_answer[i+1:]
+                                length_of_answer = length_of_answer[:i] + guess + length_of_answer[i+1:]#2nd way end
                 print(length_of_answer)
+                """
+                for i, letter in enumerate(true_answer): #3rd way start
+                    if guess == true_answer:
+                        length_of_answer[i] = guess
+                print ("".join(length_of_answer)) #3rd way end
             elif guess not in true_answer:
                 print ("That letter is not in the word \n")
                 INITIAL_GUESSES -= 1
