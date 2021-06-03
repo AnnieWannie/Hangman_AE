@@ -41,7 +41,7 @@ def play_game(secret_word, INITIAL_GUESSES):
                 print(length_of_answer)
                 """
                 for i, letter in enumerate(true_answer): #3rd way start
-                    if guess == true_answer:
+                    if guess == letter:
                         length_of_answer[i] = guess
                 print ("".join(length_of_answer)) #3rd way end
             elif guess not in true_answer:
